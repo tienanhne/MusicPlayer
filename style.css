@@ -1,0 +1,126 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-family: Arial, Helvetica, sans-serif;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+body {
+  min-height: 100vh;
+  padding: 20px;
+}
+.music{
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: rgba(100, 100,111,0.2) 0px 7px 29px 0px;
+    padding: 30px 15px 30px;
+
+}
+.music-thumb{
+    width: 100px;
+    height: 100px;
+    margin:  0 auto 25px;
+}
+.music-thumb.isplaying{
+  animation:  spinner 5s infinite;
+}
+.music-thumb img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100rem;
+    box-shadow: 0 0 0 3px #ffb86c, 0 0 0 6px white, 0 0 0 9px #ff6bcb;
+}
+.music-name{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 550;
+    margin-bottom: 20px;
+}
+.timer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 40px;
+}
+.play{
+   position: relative;
+}
+.player-inner{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: rgba(149,157,165,0.2) 0px 8px 24px;
+    position: relative;
+    font-size: 20px;
+    z-index: 2;
+}
+.play::before{
+    inset: 0;
+    content: "";
+    position: absolute;
+    background-image: linear-gradient(to right bottom, #ff6bcb, #ffb86c);
+    transform: scale(1.5);
+    border-radius: 100rem;
+
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 40px;
+}
+.back-play,.next-play,.infiniti,.loop-play{
+    cursor: pointer;
+}
+.range {
+    height: 38px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+}
+.range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background-color: #eee;
+  }
+.range::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgba(100, 100,111,0.05);  
+    border: 1px solid #000000;
+    height: 15px;
+    width: 15px;
+    border-radius: 100rem;
+    background: #20e3b2;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+  }
+  @keyframes spinner {
+    to{
+      rotate: 360deg;
+    }
+  }
+  .loop-play{
+    font-size: 20px;
+  }
