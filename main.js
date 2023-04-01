@@ -12,12 +12,14 @@ const musicName = $('.music-name')
 const musicImg = $('.music-thumb img')
 const musicThumb = $('.music-thumb')
 const playLopp = $('.loop-play')
+const ifinite = $('.infiniti')
 let songStatus = false;
+let isLooping = false;
 let isPlaying = true;
 let indexSong = 0;
 let Timer;
 let repeatCount = 0;
-
+const tableBody = $('.tbody')
 
 playLopp.addEventListener("click", () => {
     if (songStatus) {
@@ -35,28 +37,44 @@ const musics = [
         id: 1,
         title: "btyl.mp3",
         image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_jpeg/cover/2/d/5/c/2d5cc8bc9f930ce292c464e929ea31fb.jpg",
-        name: "Bật Tình Yêu Lên"
+        name: "Bật Tình Yêu Lên",
+        singer: "Hòa Minzy"
     },
     {
         id: 2,
         title: "tlinh.mp3",
         image: "https://th.bing.com/th/id/OIP.lavFc4y-TpRU5lP7eZXZxQAAAA?pid=ImgDet&rs=1",
-        name: "Ghệ iu dấu của em"
+        name: "Ghệ iu dấu của em",
+        singer: "Tlinh"
     },
     {
         id: 3,
         title: "dontcoi.mp3",
         image: "https://avatar-ex-swe.nixcdn.com/song/2022/12/07/5/6/5/7/1670385361814_640.jpg",
-        name: "Don't Côi"
+        name: "Don't Côi",
+        singer: "RPT orijin"
     },
     {
         id: 4,
         title: "uqt.mp3",
         image: "https://kenh14cdn.com/2020/6/24/1046384817545245420442358705655386430061560o-15930072570751095680806.jpg",
-        name: "Ưng Qúa Chừng"
+        name: "Ưng Qúa Chừng",
+        singer: "Amee"
     }
 ]
 
+ifinite.addEventListener("click", () => {
+    if (!isLooping) {
+        isLooping = true;
+        song.loop = true;
+        ifinite.style.color = '#20e3b2'
+    } else {
+        isLooping = false;
+        song.loop = false;
+        ifinite.removeAttribute("style")
+    }
+
+})
 
 playBtn.addEventListener("click", playPause)
 function playPause() {
@@ -71,9 +89,11 @@ function playPause() {
         song.pause();
         playBtn.innerHTML = `<ion-icon name="play-outline"></ion-icon>`
         isPlaying = true;
+       
         clearInterval(Timer);
     }
 }
+
 song.setAttribute("src", `./music/${musics[indexSong].title}`)
 backBtn.addEventListener("click", function () {
     changeSong(-1);
@@ -89,6 +109,7 @@ function handleEndedSong() {
         playPause();
     } else {
         changeSong(1);
+        
     }
 }
 function changeSong(dir) {
@@ -99,13 +120,16 @@ function changeSong(dir) {
             indexSong = 0;
         }
         isPlaying = true;
+        renderList();
     } else if (dir === -1) {
         // prev song
         indexSong--;
         if (indexSong < 0) {
             indexSong = musics.length - 1;
+            
         }
         isPlaying = true;
+        renderList();
     }
     init(indexSong);
     // song.setAttribute("src", `./music/${musics[indexSong].file}`);
@@ -139,7 +163,24 @@ function init(indexSong) {
     song.setAttribute("src", `./music/${musics[indexSong].title}`)
     musicImg.setAttribute("src", musics[indexSong].image)
     musicName.textContent = musics[indexSong].name
-
+    
 }
 displayTimer();
 init(indexSong);
+
+function renderList() {
+    let innerhtml = '';
+    musics.map((item, index) => {
+        let content = `
+        <tr class="song ${index === indexSong ? 'active' : ''}">
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.singer}</td>
+        </tr>
+        `
+        innerhtml += content;
+        
+    })
+    tableBody.innerHTML = innerhtml;
+}
+renderList();

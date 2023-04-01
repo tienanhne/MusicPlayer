@@ -12,31 +12,50 @@
 </head>
 
 <body>
-    <div class="music">
-        <div class="music-thumb">
-            <img src="./pexels-james-wheeler-417074.jpg" alt="anh">
-        </div>
-        <h3 class="music-name">
-            Why Not Me
-        </h3>
-        <input type="range" name="song" id="range" class="range" />
-        <audio src="./music/btyl.mp3" id="song"></audio>
-        <div class="timer">
-            <div class="duration"></div>
-            <div class="remainning"></div>
-        </div>
-        <div class="controls">
-            <ion-icon name="infinite-outline" class="infiniti"></ion-icon>
-            <ion-icon name="play-back-outline" class="back-play"></ion-icon>
-            <div class="play">
-                <div class="player-inner">
-                    <ion-icon name="play-outline" class="play-icon"></ion-icon>
-                </div>
+    <div class="container">
+        <div class="music">
+            <div class="music-thumb">
+                <img src="./pexels-james-wheeler-417074.jpg" alt="anh">
             </div>
-            <ion-icon name="play-forward-outline" class="next-play"></ion-icon>
-            <ion-icon name="repeat-outline" class="loop-play"></ion-icon>
+            <h3 class="music-name">
+                Why Not Me
+            </h3>
+            <input type="range" name="song" id="range" class="range" />
+            <audio src="./music/btyl.mp3" id="song"></audio>
+            <div class="timer">
+                <div class="duration"></div>
+                <div class="remainning"></div>
+            </div>
+            <div class="controls">
+                <ion-icon name="infinite-outline" class="infiniti"></ion-icon>
+                <ion-icon name="play-back-outline" class="back-play"></ion-icon>
+                <div class="play">
+                    <div class="player-inner">
+                        <ion-icon name="play-outline" class="play-icon"></ion-icon>
+                    </div>
+                </div>
+                <ion-icon name="play-forward-outline" class="next-play"></ion-icon>
+                <ion-icon name="repeat-outline" class="loop-play"></ion-icon>
+            </div>
+        </div>
+
+        <div class="table_list">
+                <table class="fl-table">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Bài Hát</th>
+                        <th>Ca Sĩ</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        
+            
+                    <tbody>
+                </table>
         </div>
     </div>
+
 
 
     <script src="./main.js"></script>
