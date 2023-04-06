@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="app.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <article class="screen">
+        <input type="checkbox" value="None" id="magicButton" name="check" />
+        <label class="main" for="magicButton"></label>
+
+        <div class="coverImage">
+            <img src="./pexels-james-wheeler-417074.jpg" alt="">
+        </div>
+        <div class="search"></div>
+        <div class="bodyPlayer"></div>
+        <table class="list table_list">
+            <tr class="song">
+                <td class="nr">
+                    <h5>1<h5>
+                </td>
+                <td class="title">
+                    <h6>Heavydirtysoul<h6>
+                </td>
+                <td class="length">
+                    <h5>3:54<h5>
+                </td>
+                <td><input type="checkbox" id="heart" /><label class="zmr" for="heart"></label></td>
+            </tr>
+        </table>
+
+        <div class="shadow"></div>
+
+        <div class="bar"></div>
+
+        <div class="info">
+            <h4 class="music-name">STRESSED OUT</h4>
+            <h3 class="singer">twenty one pilots - Blurryface</h3>
+        </div>
+
+        <input type="range" name="song" id="range" class="range" />
+        <audio preload="auto"  src="./music/dontcoi.mp3" id="song" controls></audio>
+        <div class="timer">
+            <div class="duration">2:00</div>
+            <div class="remainning">3:43</div>
+        </div>
+        <table class="player">
+            <td><input type="checkbox" id="backward" class="back-play" /><label class="backward" for="backward"></label></td>
+            <td><input type="checkbox" id="play" title="Play" class="player-inner" /><label class="play"
+                    for="play"></label></td>
+            <td><input type="checkbox" id="forward" class="next-play" /><label class="forward" for="forward"></label></td>
+        </table>
+
+        <table class="footer">
+            <td><input type="checkbox" id="love" checked /><label class="love" for="love"></label></td>
+            <td><input type="checkbox" id="shuffle" /><label class="shuffle" for="shuffle"></label></td>
+            <td><input type="checkbox" id="repeat" class="infiniti" checked /><label class="repeat" for="repeat"></label></td>
+            <td><input type="checkbox" id="options" /><label class="options" for="options"></label></td>
+        </table>
+
+        <div class="current">
+            <h2 class="music-name"> </h2>
+        </div>
+
+
+    </article>
+    <!-- <table class="table_list">
+        <tr class="song">
+            <td class="nr">
+                <h5>1<h5>
+            </td>
+        </tr>
+    </table> -->
+
+    <script src="./app.js"></script>
+</body>
+
+</html>

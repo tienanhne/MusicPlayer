@@ -10,25 +10,22 @@ const remainning = $('.remainning')
 const rangeBar = $('.range')
 const musicName = $('.music-name')
 const musicSinger = $('.singer')
-const musicImg = $('.music-thumb img')
-const musicThumb = $('.music-thumb')
+const musicImg = $('.coverImage img')
+const musicThumb = $('.coverImage')
 const playLopp = $('.loop-play')
 const ifinite = $('.infiniti')
 const randomPlay = $('.random-play')
-let volume_slider = $('.volume_slider');
 const Player_Storage = 'Player_Tiến'
-let songStatus = false;
 let isLooping = false;
 let isPlaying = true;
 let indexSong = 0;
 let israndom = false;
 let Timer;
-let repeatCount = 0;
-const tableBody = $('.tbody')
+const tableBody = $('.table_list')
 let setting = JSON.parse(localStorage.getItem(Player_Storage)) || {};
 
 
-
+let length = $('.length');
 
 
 
@@ -133,13 +130,12 @@ function playPause() {
     if (isPlaying) {
         musicThumb.classList.add("isplaying")
         song.play();
-        playBtn.innerHTML = `<ion-icon name="pause-outline"></ion-icon>`
+
         isPlaying = false;
         Timer = setInterval(displayTimer, 500);
     } else {
         musicThumb.classList.remove("isplaying")
         song.pause();
-        playBtn.innerHTML = `<ion-icon name="play-outline"></ion-icon>`
         isPlaying = true;
 
         clearInterval(Timer);
@@ -157,23 +153,10 @@ nextBtn.addEventListener("click", function () {
     changeSong(1);
 
 })
-function handleVolume() {
-    song.volume = volume_slider.value / 100;
-}
 song.addEventListener('ended', handleEndedSong);
 function handleEndedSong() {
-    repeatCount++;
-    if (songStatus && repeatCount === 1) {
-        isPlaying = true;
-        playPause();
-    } else {
-        changeSong(1);
-
-    }
-    if (israndom == true) {
-        nextBtn.click();
-    }
-
+    nextBtn.click();
+    changeSong(1);
 }
 function changeSong(dir) {
     if (dir === 1) {
@@ -209,6 +192,7 @@ function displayTimer() {
     } else {
         durationTime.textContent = formatTimer(duration);
     }
+    
 }
 function formatTimer(number) {
     const minutes = Math.floor(number / 60);
@@ -227,6 +211,7 @@ function init(indexSong) {
     musicImg.setAttribute("src", musics[indexSong].image)
     musicName.textContent = musics[indexSong].name
     musicSinger.textContent = musics[indexSong].singer
+    
 }
 displayTimer();
 init(indexSong);
@@ -237,16 +222,24 @@ function renderList() {
     musics.map((item, index) => {
         let content = `
         <tr class="song ${index === indexSong ? 'active' : ''}" data-index="${index}">
-            <td>${item.id}</td>
-            <td>${item.name}</td>
-            <td>${item.singer}</td>
-            <td class="option"><ion-icon name="ellipsis-horizontal-outline"></ion-icon></td>
+                <td class="nr">
+                    <h5>${item.id}<h5>
+                </td>
+                <td class="title">
+                    <h6>${item.name}<h6>
+                </td>
+                <td class="length">
+                    <h5>${length}<h5>
+                </td>
+                <td><input type="checkbox" id="heart" /><label class="zmr" for="heart"></label></td>
         </tr>
         `
         innerhtml += content;
 
     })
+  
     tableBody.innerHTML = innerhtml;
+
 
     HandelSetting = function (key, value) {
         setting[key] = value;
@@ -273,40 +266,23 @@ function renderList() {
 }
 function loadSetting() {
     isLooping = setting.isLooping;
-    songStatus = setting.songStatus;
+
     israndom = setting.israndom
 }
 loadSetting();
-if (isLooping == true) {
-    ifinite.style.color = '#20e3b2'
-} else {
-    ifinite.removeAttribute("style")
-}
-if (songStatus == true) {
-    playLopp.style.color = '#20e3b2'
-} else {
-    playLopp.style.color = 'black'
-}
-if (israndom == true) {
-    randomPlay.style.color = '#20e3b2'
-} else {
-    randomPlay.style.color = 'black'
-}
 
-ifinite.addEventListener("click", () => {
-    if (!isLooping) {
-        isLooping = true;
-        HandelSetting('isLooping', isLooping)
-        song.loop = true;
-        ifinite.style.color = '#20e3b2'
-    } else {
-        isLooping = false;
-        song.loop = false;
-        HandelSetting('isLooping', isLooping)
-        ifinite.removeAttribute("style")
-    }
-
-
+ifinite.addEventListener("change", () => {
+    if (ifinite.checked == true) {
+        if(!isLooping){
+            isLooping = true;
+            HandelSetting('isLooping', isLooping)
+            song.loop = true;
+        }
+        }else{
+            isLooping = false;
+            song.loop = false;
+            HandelSetting('isLooping', isLooping)
+        }
 })
 
 function RandomList() {
@@ -321,26 +297,38 @@ randomPlay.addEventListener("click", () => {
     if (!israndom) {
         israndom = true
         HandelSetting('israndom', israndom)
-        randomPlay.style.color = '#20e3b2'
     }
     else {
         israndom = false;
         HandelSetting('israndom', israndom)
-        randomPlay.style.color = 'black'
     }
 })
-playLopp.addEventListener("click", () => {
-    if (!songStatus) {
-        songStatus = true
-        HandelSetting('songStatus', songStatus)
-        playLopp.style.color = '#20e3b2'
-    }
-    else {
-        songStatus = false;
-        HandelSetting('songStatus', songStatus)
-        playLopp.style.color = 'black'
-    }
-
-})
-
 renderList();
+
+
+// let values =
+// `Lorem ipsum dolor sit amet,
+// consectetur adipiscing elit.
+// Sed do eiusmod tempor incididunt
+// ut labore et dolore magna aliqua.`
+// let tableBody = document.querySelector('.table_list')
+// function Tachdulieu() {
+//     let lines = values.split("\n");
+//     console.log(lines)
+//     let innerhtml = '';
+//         lines.map(item => {
+//             let content = `
+//             <tr>
+//                     <td class="nr">
+//                         <h5>${item}<h5>
+//                         <hr>
+//                     </td>
+//             </tr>
+//             `
+//             innerhtml += content;
+    
+//     })
+//     tableBody.innerHTML = innerhtml;
+// }
+// Tachdulieu();
+

@@ -21,6 +21,11 @@
             <span class="singer">AMII</span>
             <input type="range" name="song" id="range" class="range" />
             <audio src="./music/btyl.mp3" id="song"></audio>
+            <div class="volume">
+                  <ion-icon name="volume-high"></ion-icon>
+            <input type="range" orient="vertical" min="1" max="100" value="99" class="volume_slider" onchange="handleVolume()">
+            </div>
+          
             <div class="timer">
                 <div class="duration"></div>
                 <div class="remainning"></div>
